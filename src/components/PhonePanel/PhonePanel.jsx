@@ -1,8 +1,11 @@
 import { NavLink } from "react-router-dom";
 import "./Phonepanel.css";
 import { user } from "../../img/index";
+import { useAuth } from "../../context/AuthContext";
 
 export default function PhonePanel(){
+    const {userDetail} = useAuth();
+
     return <div className="bottom-panel">
         <NavLink to="/" className="nav-bullets">
           <span>
@@ -19,7 +22,7 @@ export default function PhonePanel(){
             <img width="30" height="30" src="https://img.icons8.com/material-outlined/96/bookmark-ribbon--v1.png" alt="bookmark-ribbon--v1" />
           </span>
         </NavLink>
-        <NavLink to="/profile" className="nav-bullets">
+        <NavLink to={`/profile/${userDetail._id}`} className="nav-bullets">
           <span>
             <img width="30" height="30" src={user} alt="user-male-circle--v1" />
           </span>
