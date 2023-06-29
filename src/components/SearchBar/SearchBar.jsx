@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import "./SearchBar.css";
 import { useUsers } from "../../context/UserContext";
+import { Link } from "react-router-dom";
 
 export default function SearchBar() {
   const { userData } = useContext(useUsers);
@@ -23,6 +24,21 @@ export default function SearchBar() {
     );
   };
 
+  const showBox = () => {
+    if (keywords.length) {
+      if(searchData.length) {
+      return (
+        <div className="search-items">
+          {searchData?.map((item) => (
+            <Link style={{color: "white", textDecoration:"none"}} to={`/profile/${item._id}`}><p>{item?.username}</p></Link>
+          ))}
+        </div>
+      );} else {
+        return<div className="search-items"><p>No user Found...</p></div>
+      }
+    }
+  };
+
   return (
     <label htmlFor="search-id" className="search-id-label">
       <input
@@ -37,13 +53,8 @@ export default function SearchBar() {
         src="https://img.icons8.com/ios/100/search--v1.png"
         alt="search--v1"
       />
-      <div className="search-items">
-        {keywords.length ? (
-          searchData?.map((item) => <p>{item?.username}</p>)
-        ) : (
-          <p></p>
-        )}
-      </div>
+
+      {showBox()}
     </label>
   );
 }
