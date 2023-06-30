@@ -90,6 +90,9 @@ export function makeServer({ environment = "development" } = {}) {
       this.passthrough(
         "https://api.cloudinary.com/v1_1/dbehxf29s/image/upload",
       );
+      this.passthrough(
+        `https://api.cloudinary.com/v1_1/dbehxf29s/video/upload`
+      );
     },
   });
 }

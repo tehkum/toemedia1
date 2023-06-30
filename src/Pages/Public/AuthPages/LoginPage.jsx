@@ -11,7 +11,7 @@ export default function LoginPage() {
 
   
 
-  const { loginHandler } = useAuth();
+  const { loginHandler, testLoginHandler } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,6 +31,11 @@ export default function LoginPage() {
         <label htmlFor="password">Password</label>
           <input type="password" name="password" placeholder="Password" value={loginDetails.password} onChange={handleChange}/>
         <button onClick={()=>loginHandler(loginDetails)}>Login</button>
+        <button onClick={()=>testLoginHandler()} style={{
+          background: "white",
+          border: "1px solid red",
+          color: "red"
+        }}>Login with test credentials</button>
         <p>New user? <Link to="/signup">Signup</Link></p>
       </div>
     </div>

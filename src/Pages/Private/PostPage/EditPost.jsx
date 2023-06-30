@@ -23,6 +23,18 @@ export default function EditPost() {
       data.append("file", image);
       data.append("upload_preset", "Toemedia");
       data.append("cloud_name", "dbehxf29s");
+      if(image.type === "video/mp4"){
+        const res = await fetch(
+          `https://api.cloudinary.com/v1_1/dbehxf29s/video/upload`,
+          {
+            method: "POST",
+            body: data,
+          }
+        );
+        const uri = await res.json();
+      setEditedPost({ ...editPost, videoUrl: uri.url });
+      }
+      else{
       const res = await fetch(
         `https://api.cloudinary.com/v1_1/dbehxf29s/image/upload`,
         {
@@ -31,7 +43,7 @@ export default function EditPost() {
         }
       );
       const uri = await res.json();
-      setEditedPost({ ...editPost, imageUrl: uri.url });
+      setEditedPost({ ...editPost, imageUrl: uri.url });}
     } catch (error) {
       console.log(error);
     }

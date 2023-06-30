@@ -28,6 +28,26 @@ export function AuthProvider({children}){
         }
       };
 
+      const testLoginHandler = async () => {
+        try {
+          const loginDetails = {
+            username: "tehkumk",
+            password: "tehkum123",
+          }
+          const { data, status } = await axios.post("/api/auth/login", loginDetails );
+        if(status === 200 || status === 201){
+            setUserDetail(data.foundUser)
+            toast.success("Login Successfully")
+            setIsLoggedIn(true);
+            localStorage.setItem("encodedToken",data.encodedToken);
+            navigate(location?.state?.from?.pathname || "/")
+        }
+        } catch (error) {
+          console.log(error);
+          toast.error("Wrong Credentials")
+        }
+      };
+
     
     const signUpHandler = async (signupDetails) => {
       try {
@@ -64,7 +84,7 @@ export function AuthProvider({children}){
     },[userUpdated])
 
 
-    return <Authenticate.Provider value={{isLoggedIn, loginHandler, setIsLoggedIn, userDetail, signUpHandler, updateClicked}}>{children}</Authenticate.Provider>
+    return <Authenticate.Provider value={{isLoggedIn, testLoginHandler, loginHandler, setIsLoggedIn, userDetail, signUpHandler, updateClicked}}>{children}</Authenticate.Provider>
 }
 
 export const useAuth = () => useContext(Authenticate);

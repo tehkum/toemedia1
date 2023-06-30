@@ -3,9 +3,10 @@ import { usePost, useUsers } from "../../../";
 import "./Home.css";
 import PostBox from "../../../components/PostDesign/PostBox";
 import { useAuth } from "../../../context/AuthContext";
+import PostLoader from "../../../components/PostDesign/postLoader";
 
 export default function HomePage() {
-  const { postData, newPost, setUserPost, userPost } = useContext(usePost);
+  const { postData, newPost, setUserPost, userPost, loaders } = useContext(usePost);
   const { following } = useContext(useUsers);
   const { userDetail } = useAuth();
   const [ latestPost, setLatest ] = useState(true);
@@ -14,9 +15,42 @@ export default function HomePage() {
     setUserPost({...userPost, content: event.target.value})
   }
 
+  const imageHandler = async (e) => {
+    try {
+      const image = e.target.files[0];
+      const data = new FormData();
+      data.append("file", image);
+      data.append("upload_preset", "Toemedia");
+      data.append("cloud_name", "dbehxf29s");
+      if(image.type === "video/mp4"){
+        const res = await fetch(
+          `https://api.cloudinary.com/v1_1/dbehxf29s/video/upload`,
+          {
+            method: "POST",
+            body: data,
+          }
+        );
+        const uri = await res.json();
+      setUserPost({ ...userPost, videoUrl: uri.url });
+      }
+      else{
+      const res = await fetch(
+        `https://api.cloudinary.com/v1_1/dbehxf29s/image/upload`,
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+      const uri = await res.json();
+      setUserPost({ ...userPost, imageUrl: uri.url });}
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const sorted = latestPost ? postData : postData?.sort((a,b)=> b?.likes?.likeCount - a?.likes?.likeCount )
 
-  return (
+  return loaders ? <div className="home-page-head"><PostLoader /><PostLoader /><PostLoader /><PostLoader /><PostLoader /><PostLoader /><PostLoader /></div> : (
     <>
       <div className="home-page-head">
         <div className="home-page-title">
@@ -44,6 +78,7 @@ export default function HomePage() {
                 value={userPost.content}
               />
             </div>
+            <input type="file" onChange={imageHandler}/>
 
             <button type="submit" onClick={()=>{
               newPost(userPost)

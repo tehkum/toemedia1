@@ -10,7 +10,7 @@ import DropDown from "./DropDown";
 import { Link } from "react-router-dom";
 
 export default function PostBox({ item }) {
-  const { _id, content, username, likes, imageUrl } = item;
+  const { _id, content, username, likes, imageUrl, videoUrl } = item;
   const { userData } = useContext(useUsers);
   const [thisUser, setThisUser] = useState({});
   const { opsDispatch } = useOps();
@@ -45,6 +45,7 @@ export default function PostBox({ item }) {
       <div className="post-sec-2">
         <p>{content}</p>
         {imageUrl && <img src={imageUrl} alt="post" width="100%" height="400"/>}
+        {videoUrl && <video src={videoUrl} width="100%" height="400" controls="controls" autoplay="true" />}
       </div></Link>
       {/* ************************************************************************** */}
       <div class="post-sec-3">
@@ -68,12 +69,12 @@ export default function PostBox({ item }) {
           )}
           <p>{likes?.likeCount}</p>
         </span>
-        <img
+        {/* <img
           width="30"
           height="30"
           src="https://img.icons8.com/material-outlined/96/topic--v1.png"
           alt="topic--v1"
-        />
+        /> */}
         {bookmarkData?.find((id) => id === _id) ? (
           <img
             width="30"

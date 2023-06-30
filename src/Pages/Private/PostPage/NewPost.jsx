@@ -3,6 +3,7 @@ import "../../Public/HomePage/Home.css";
 import { usePost } from "../../../context/PostContext";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../../context/AuthContext";
+// import { user } from "../../../img";
 
 export default function NewPost() {
   const { newPost, setUserPost, userPost } = useContext(usePost);
@@ -20,6 +21,18 @@ export default function NewPost() {
       data.append("file", image);
       data.append("upload_preset", "Toemedia");
       data.append("cloud_name", "dbehxf29s");
+      if(image.type === "video/mp4"){
+        const res = await fetch(
+          `https://api.cloudinary.com/v1_1/dbehxf29s/video/upload`,
+          {
+            method: "POST",
+            body: data,
+          }
+        );
+        const uri = await res.json();
+      setUserPost({ ...userPost, videoUrl: uri.url });
+      }
+      else {
       const res = await fetch(
         `https://api.cloudinary.com/v1_1/dbehxf29s/image/upload`,
         {
@@ -28,7 +41,7 @@ export default function NewPost() {
         }
       );
       const uri = await res.json();
-      setUserPost({ ...userPost, imageUrl: uri.url });
+      setUserPost({ ...userPost, imageUrl: uri.url });}
     } catch (error) {
       console.log(error);
     }
@@ -60,6 +73,7 @@ export default function NewPost() {
             
           </div>
           {userPost?.imageUrl && <img src={userPost?.imageUrl} alt="sfads" height="100" width="100" />}
+          {userPost?.videoUrl && <video src={userPost?.videoUrl} alt="sfads" height="100" width="100" />}
           <input type="file" onChange={imageHandler} />
           <button type="submit" onClick={() => {
             newPost(userPost)

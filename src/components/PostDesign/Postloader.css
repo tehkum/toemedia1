@@ -1,0 +1,31 @@
+.postloader {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.postloader-profile {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+}
+
+.postloader-profile1 {
+    background-color: #666;
+    border-radius: 30px;
+    width: 50px;
+    height: 50px;
+}
+
+.postloader-profile2 {
+    background-color: #666;
+    width: 160px;
+    height: 40px;
+}
+
+.postloader-content {
+    background-color: #666;
+    width: 100%;
+    height: 130px;
+}

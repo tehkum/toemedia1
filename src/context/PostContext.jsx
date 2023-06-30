@@ -9,6 +9,8 @@ export function PostProvider({children}){
     const [ postData, setPost ] = useState([]); 
     const [ userPost, setUserPost ] = useState({content:""});
     const [ thisPost, setThisPost ] = useState({});
+    const [ loaders, setLoaders ] = useState(false)
+    const [postCheck, setCheck] = useState(false)
 
     const [ productState, productDispatch ] = useReducer(ProductReducer, {
     productData: [],
@@ -16,7 +18,9 @@ export function PostProvider({children}){
 
     const fetchData = async () => {
         try {
+            setLoaders(true);
             const res = await axios.get("/api/posts");
+            setLoaders(false);
             setPost([...res.data.posts].sort(
                 (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
               ))
@@ -31,7 +35,7 @@ export function PostProvider({children}){
             setThisPost(res.data.post);
         } catch (error) {
             console.log(error)
-        }
+        } 
     }
 
     const newPost = async (userPost) => {
@@ -43,6 +47,7 @@ export function PostProvider({children}){
               })
               if(res.status===200 || res.status === 201){
                 setUserPost({content:""})
+                setCheck(!postCheck)
               }
               console.log(res)
             toast.success("New post added")
@@ -50,7 +55,7 @@ export function PostProvider({children}){
             
         } catch (error) {
             console.log(error)
-        }
+        } 
     }
 
     const deletePost = async (postId) => {
@@ -61,6 +66,7 @@ export function PostProvider({children}){
                 },
               })
               console.log(res)
+              setCheck(!postCheck)
             toast.success("Post Deleted Successfully")
 
         } catch (error) {
@@ -76,6 +82,7 @@ export function PostProvider({children}){
                 },
               })
               console.log(res)
+              setCheck(!postCheck)
               toast.success("Edited Successfully")
         } catch (error) {
             console.log(error)
@@ -84,7 +91,7 @@ export function PostProvider({children}){
 
     useEffect(()=>{
         fetchData();
-    },[postData])
+    },[postCheck])
 
-    return <usePost.Provider value={{ productState, productDispatch, postData, newPost, setUserPost, userPost, deletePost, editPost, getPost, thisPost }}>{children}</usePost.Provider>;
+    return <usePost.Provider value={{ productState, loaders, productDispatch, postData, newPost, setUserPost, userPost, deletePost, editPost, getPost, thisPost }}>{children}</usePost.Provider>;
 }

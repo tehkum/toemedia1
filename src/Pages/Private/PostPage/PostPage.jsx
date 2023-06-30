@@ -19,7 +19,6 @@ export default function PostPage(){
     </div>
     <div className="home-page-content">
         {<PostBox item={thisPost}/>}
-        <h1>{thisPost.username}</h1>
     </div>
 </div>
 }
