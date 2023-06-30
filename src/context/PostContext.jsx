@@ -49,7 +49,7 @@ export function PostProvider({children}){
                 setUserPost({content:""})
                 setCheck(!postCheck)
               }
-              console.log(res)
+            //   console.log(res)
             toast.success("New post added")
 
             
@@ -65,7 +65,7 @@ export function PostProvider({children}){
                   authorization: localStorage.getItem("encodedToken"),
                 },
               })
-              console.log(res)
+            //   console.log(res)
               setCheck(!postCheck)
             toast.success("Post Deleted Successfully")
 
@@ -81,7 +81,7 @@ export function PostProvider({children}){
                   authorization: localStorage.getItem("encodedToken"),
                 },
               })
-              console.log(res)
+            //   console.log(res)
               setCheck(!postCheck)
               toast.success("Edited Successfully")
         } catch (error) {

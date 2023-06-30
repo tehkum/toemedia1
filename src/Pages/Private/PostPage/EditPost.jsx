@@ -13,7 +13,7 @@ export default function EditPost() {
 
   const eventHandler = (e) => {
     setEditedPost({ ...editedPost, content: e.target.value });
-    console.log(editedPost);
+    // console.log(editedPost);
   };
 
   const imageHandler = async (e) => {

@@ -36,7 +36,7 @@ export default function EditModal({ detail, showEdit, setShow }) {
             }
           );
           const uri = await res.json();
-          console.log(uri)
+        //   console.log(uri)
           setUserToEdit({ ...userToEdit, profileImage: uri.url });
         } catch (error) {
           console.log(error);
@@ -52,7 +52,7 @@ export default function EditModal({ detail, showEdit, setShow }) {
               })
               updateClicked();
               setShow(false)
-              console.log(res)
+            //   console.log(res)
         } catch (error) {
             console.error(error)
         }
@@ -73,7 +73,7 @@ export default function EditModal({ detail, showEdit, setShow }) {
               }
             );
             const uri = await res.json();
-            console.log(uri)
+            // console.log(uri)
             setUserToEdit({ ...userToEdit, profileBackground: uri.url });
           } catch (error) {
             console.log(error);

@@ -17,7 +17,7 @@ export function OpsProvider({ children }) {
             },
           }
         );
-        console.log(res);
+        // console.log(res);
       } catch (error) {
         console.log(error.message);
       }
@@ -33,7 +33,7 @@ export function OpsProvider({ children }) {
             },
           }
         );
-        console.log(res);
+        // console.log(res);
       } catch (error) {
         console.log(error.message);
       }
@@ -50,7 +50,7 @@ export function OpsProvider({ children }) {
             },
           }
         );
-        console.log(res);
+        // console.log(res);
       } catch (error) {
         console.log(error.message);
       }
@@ -67,7 +67,7 @@ export function OpsProvider({ children }) {
             },
           }
         );
-        console.log(res);
+        // console.log(res);
       } catch (error) {
         console.log(error.message);
       }

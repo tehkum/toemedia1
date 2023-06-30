@@ -34,7 +34,7 @@ export function BookmarkProvider({ children }) {
           authorization: localStorage.getItem("encodedToken"),
         },
       });
-      console.log(res);
+      // console.log(res);
       toast.success("Added to Bookmark")
     } catch (error) {
       console.log(error.message);
@@ -48,7 +48,7 @@ export function BookmarkProvider({ children }) {
           authorization: localStorage.getItem("encodedToken"),
         },
       });
-      console.log(res);
+      // console.log(res);
       toast.success("Removed From Bookmark")
 
     } catch (error) {
