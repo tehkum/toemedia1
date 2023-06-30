@@ -93,5 +93,5 @@ export function PostProvider({children}){
         fetchData();
     },[postCheck])
 
-    return <usePost.Provider value={{ productState, loaders, productDispatch, postData, newPost, setUserPost, userPost, deletePost, editPost, getPost, thisPost }}>{children}</usePost.Provider>;
+    return <usePost.Provider value={{ productState, loaders, postCheck, setCheck, productDispatch, postData, newPost, setUserPost, userPost, deletePost, editPost, getPost, thisPost }}>{children}</usePost.Provider>;
 }

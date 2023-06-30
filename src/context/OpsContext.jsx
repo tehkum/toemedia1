@@ -1,9 +1,12 @@
 import { createContext, useContext, useReducer } from "react";
 import axios from "axios";
+import { usePost } from "./PostContext";
 
 export const userOps = createContext();
 
 export function OpsProvider({ children }) {
+  const {setCheck, postCheck} = useContext(usePost)
+
   const OpsReducer = (state, action) => {
 
     const followUser = async (userId) => {
@@ -17,7 +20,8 @@ export function OpsProvider({ children }) {
             },
           }
         );
-        // console.log(res);
+        setCheck(!postCheck)
+        console.log(res);
       } catch (error) {
         console.log(error.message);
       }
@@ -33,7 +37,8 @@ export function OpsProvider({ children }) {
             },
           }
         );
-        // console.log(res);
+        console.log(res);
+        setCheck(!postCheck)
       } catch (error) {
         console.log(error.message);
       }
@@ -50,7 +55,8 @@ export function OpsProvider({ children }) {
             },
           }
         );
-        // console.log(res);
+        console.log(res);
+        setCheck(!postCheck)
       } catch (error) {
         console.log(error.message);
       }
@@ -67,7 +73,8 @@ export function OpsProvider({ children }) {
             },
           }
         );
-        // console.log(res);
+        console.log(res);
+        setCheck(!postCheck)
       } catch (error) {
         console.log(error.message);
       }

@@ -29,3 +29,9 @@
 .login-form input {
     padding: 0.5rem 1rem;
 }
+
+@media (max-width: 768px) {
+    .login-form{
+        width: 80vw
+    }
+}
