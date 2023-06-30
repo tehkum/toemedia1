@@ -20,7 +20,7 @@ export function OpsProvider({ children }) {
             },
           }
         );
-        setCheck(!postCheck)
+        // setCheck(!postCheck)
         console.log(res);
       } catch (error) {
         console.log(error.message);
@@ -38,7 +38,7 @@ export function OpsProvider({ children }) {
           }
         );
         console.log(res);
-        setCheck(!postCheck)
+        // setCheck(!postCheck)
       } catch (error) {
         console.log(error.message);
       }
