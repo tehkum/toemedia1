@@ -18,7 +18,6 @@ export function PostProvider({children}){
 
     const fetchData = async () => {
         try {
-            setLoaders(true);
             const res = await axios.get("/api/posts");
             setLoaders(false);
             setPost([...res.data.posts].sort(
