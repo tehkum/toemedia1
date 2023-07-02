@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./modal.css";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
+// import { cat, dog, pokemon, dragon, lizard, hen } from "../../img"
 
 export default function EditModal({ detail, showEdit, setShow }) {
     const { updateClicked } = useAuth();
@@ -12,6 +13,7 @@ export default function EditModal({ detail, showEdit, setShow }) {
         profileBackground: detail?.profileBackground
     });
     const [ backgroundType, setBackgroundType ] = useState("background-color")
+    // const [ profileType, setProfileType ] = useState("avatar");
 
     const eventHandler = (e) => {
         const { name, value } = e.target;
@@ -83,13 +85,14 @@ export default function EditModal({ detail, showEdit, setShow }) {
     return (
         <div className="modal-outer" style={{display: showEdit ? 'flex' : "none"}}>
             <div className="modal-inner">
-                <div style={{display: "flex", alignItems: "center"}}>
+                <div style={{display: "flex", alignItems: "center", flexWrap: "wrap"}}>
                 <img
                     className="profile-image"
                     src={detail?.profileImage ? detail.profileImage :"https://picsum.photos/id/1/200/300"}
                     alt="profile"
                 />
                 <input type="file" name="profileImage" onChange={imageHandler}/>
+                
                 </div>
                 <p><b>Background: </b></p>
                 <select onChange={(e)=>{
