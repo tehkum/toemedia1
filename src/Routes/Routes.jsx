@@ -20,4 +20,15 @@ export default function RoutePages(){
         <Route path="/edit/:postId" element={<AuthRoute><EditPost/></AuthRoute>} />
         <Route path="/new-post" element={<AuthRoute><NewPost /></AuthRoute>}/>
     </Routes>
+    // return <Routes>
+    //     <Route path="/" element={<HomePage />} />
+    //     <Route path="*" element={<HomePage />} />
+    //     <Route path="/explore" element={<ExplorePage />} />
+    //     <Route path="/bookmark" element={<BookmarkPage />} />
+    //     <Route path="/profile/:userId" element={<ProfilePage />} />
+    //     <Route path="/post/:postId" element={<PostPage />}/>
+    //     <Route path='/mockman' element={<Mockman />} />
+    //     <Route path="/edit/:postId" element={<EditPost/>} />
+    //     <Route path="/new-post" element={<NewPost />}/>
+    // </Routes>
 }

@@ -6,12 +6,13 @@ import { usePost } from "../../../context/PostContext";
 
 export default function PostPage(){
     const { postId } = useParams();
-    const { getPost, thisPost } = useContext(usePost);
+    const { getPost, thisPost, postCheck } = useContext(usePost);
+
 
     useEffect(()=>{
         getPost(postId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[postId])
+    },[postId, postCheck])
 
     return <div className="home-page-head">
     <div className="home-page-title">
